@@ -1,2 +1,5 @@
-# File-Hashing
-A command line python project that allows the user to create and compare hash values.
+# File-Hashing and Comparison
+Author: Stone Provo, 000854122.
+
+## What does it do?
+
