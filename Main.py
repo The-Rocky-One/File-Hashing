@@ -5,7 +5,6 @@
 #### This script is meant to handle the command line interface, and the error checking itself, otherwise it calls on two others, CreateHash and CompareHash to create and compare the hash values respectively. ####
 
 ### Imports ###
-from CompareHash import compareHash
 from CreateHash import createHash
 import argparse
 import hashlib
@@ -22,14 +21,59 @@ def cmdLineIn():
     parser.add_argument("-Compare", "--compare", type=lambda value: errorCheck("compare",value), default=False, help="True if you wish to compare this hash to the content of hash.txt. False if not.")
     args=parser.parse_args()
 
-    createHash(args.path,args.algorithm)
 
+    # If the user doesn't want to compare hash, run createHash and add to hash.txt.
+    # If they do want to compare hash, don't add the hash value to hash.txt, ask if they'd like to add it later.
+    if args.compare == False:
+        addHash=("Y")
     if args.compare == True:
-        compareHash(args.path,args.algorithm)
+        addHash=("N")
+    
+    hashVal, inHTxt =createHash(args.path,args.algorithm,addHash)
 
-    ### REMOVE THESE LINES BEFORE SUBMISSION, THEYRE HERE FOR TESTING
-    test = [args.path, args.algorithm, args.compare]
-    print (test)
+
+    #Printing output to screen
+    print()
+    print(f"File Path:              {args.path}")
+    print(f"Hashing Algorithm:      {args.algorithm}")
+    print(f"Compare with Hash.txt:  {args.compare}")
+    print(f"Hashed value:           {hashVal}")
+    print()
+    
+    #If the user wanted to compare, check if it's in hash.txt, if it's not, ask if they'd like to add it. 
+    if args.compare == True:
+        if inHTxt == False:
+            print(f"Entry {hashVal} ({args.path}) using {args.algorithm} does not exist in hash.txt.")
+
+            # Ask the user if they'd like to add the entry after comparison. Loop it to make sure they enter the right input, if they don't, give them 3 tries before exiting.
+            for i in range(3):
+                addHash=input("Would you like to add this entry? (Y or N):")
+                print()
+                if addHash.upper() in ("Y","N"):
+                    break
+                print('Invalid input. Please enter "Y" or "N".')
+                print()
+            else:
+                print("Too many invalid attempts. Exiting.")
+                print()
+                return
+
+
+
+            
+            createHash(args.path,args.algorithm,addHash)
+            if addHash.upper()=="Y":
+                print(f"Adding entry {hashVal} ({args.path}) using {args.algorithm} to hash.txt")
+            else:
+                print("Entry ignored.")
+        else:
+            print(f"Entry {hashVal} ({args.path}) using {args.algorithm} already exists in hash.txt.")
+
+    #If the user didn't want to compare, the value will be added to hash.txt automatically.
+    if args.compare == False:
+        print(f"Adding entry {hashVal} ({args.path}) using {args.algorithm} to hash.txt")
+  
+    print()
 
 
 # Checking for Errors in cmd line input
