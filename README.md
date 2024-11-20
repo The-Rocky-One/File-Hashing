@@ -53,13 +53,13 @@ Generate a hash value for the file example.txt, located in the working directory
 - python .\Main.py -Path example.txt -Algorithm sha1 -Compare False
 
 ## Error Handling
-If a specified path does not exist, the program will raise an error indicating the path does not exist.
-If a specified algorithm is not in the hashlib library, the program will raise an error indicating it cannot find the algorithm in the hashlib library.
-If an invalid input is given for the -Compare field, the program will raise an error indicating it does not recognize the input.
-If the program cannot find hash.txt, it will raise a non-critical error indicating as such before creating a new hash.txt to use.
+If a specified path does not exist, the program will raise an error indicating the path does not exist.<br>
+If a specified algorithm is not in the hashlib library, the program will raise an error indicating it cannot find the algorithm in the hashlib library.<br>
+If an invalid input is given for the -Compare field, the program will raise an error indicating it does not recognize the input.<br>
+If the program cannot find hash.txt, it will raise a non-critical error indicating as such before creating a new hash.txt to use.<br>
 
 ## File Storage
-The program stores file hashes in hash.txt, with one exception. If the -Compare field is set to True, it will not, by default, store the file hash. It will, however, after comparison, ask if the user would like the file stored anyway.
+The program stores file hashes in hash.txt, with one exception. If the -Compare field is set to True, it will not, by default, store the file hash. It will, however, after comparison, ask if the user would like the file stored anyway.<br>
 The contents of hash.txt are expected to look something like the following; of course, your hash values will be different.
 ![image](https://github.com/user-attachments/assets/6cdd7100-0537-470e-90a4-ca8df0ac9dee)
 
