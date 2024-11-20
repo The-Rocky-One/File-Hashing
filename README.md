@@ -61,5 +61,6 @@ If the program cannot find hash.txt, it will raise a non-critical error indicati
 ## File Storage
 The program stores file hashes to hash.txt, with one exception. If the -Compare field is set to True, it will not by default store the file hash. It will however after comparison, ask if the user would like the file stored anyways. 
 The contents of hash.txt are expected to look something like the following, of course your hash values will be different.
-![image](https://github.com/user-attachments/assets/8b71bbdd-f2b6-417f-88a5-647ebf6233fd)
+![image](https://github.com/user-attachments/assets/6cdd7100-0537-470e-90a4-ca8df0ac9dee)
+
 
